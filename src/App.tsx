@@ -22,6 +22,7 @@ import {
 // Removed unused imports
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { analyzeVideo } from './apiService';
+import config from './config';
 import FaceIndex from './components/FaceIndex';
 
 interface DetectionResult {
@@ -93,7 +94,7 @@ function Home() {
   useEffect(() => {
     const checkBackendHealth = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/health');
+        const response = await fetch(`${config.apiBaseUrl}/api/health`);
         if (response.ok) {
           setHealthStatus('healthy');
           setError(null);
